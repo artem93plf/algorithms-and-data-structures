@@ -7,4 +7,3 @@ for i in range(len(data)):
         if data[i] + data[j] < data[j] + data[i]:
             data[i], data[j] = data[j], data[i]
 print("".join(data))
-        
