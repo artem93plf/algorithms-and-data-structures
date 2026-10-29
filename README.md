@@ -6,3 +6,4 @@
 - [Бинарный поиск](binary_search/)
 - [Контейнеры](containers/)
 - [Куча](heap/)
+- [Курсовая работа](course_work/)
