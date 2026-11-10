@@ -1,54 +1,47 @@
 import sys
-from random import getrandbits
 
 
 class Node:
     def __init__(self, key):
         self.key = key
-        self.priority = getrandbits(64)
         self.left = None
         self.right = None
 
 
-def rotate_right(node):
-    child = node.left
-    node.left = child.right
-    child.right = node
-    return child
-
-
-def rotate_left(node):
-    child = node.right
-    node.right = child.left
-    child.left = node
-    return child
-
-
-def insert(node, key):
-    if node is None:
+def insert(root, key):
+    """Добавляет key в обычное BST; повторяющиеся ключи игнорируются."""
+    if root is None:
         return Node(key)
 
-    if key < node.key:
-        node.left = insert(node.left, key)
-        if node.left.priority > node.priority:
-            return rotate_right(node)
-    elif key > node.key:
-        node.right = insert(node.right, key)
-        if node.right.priority > node.priority:
-            return rotate_left(node)
-
-    return node
-
-
-def find_next(node, key):
-    answer = -1
-
-    while node is not None:
-        if node.key < key:
+    node = root
+    while True:
+        if key < node.key:
+            if node.left is None:
+                node.left = Node(key)
+                break
+            node = node.left
+        elif key > node.key:
+            if node.right is None:
+                node.right = Node(key)
+                break
             node = node.right
         else:
+            break
+
+    return root
+
+
+def find_next(root, key):
+    """Возвращает наименьший ключ >= key или -1, если такого нет."""
+    answer = -1
+    node = root
+
+    while node is not None:
+        if node.key >= key:
             answer = node.key
             node = node.left
+        else:
+            node = node.right
 
     return answer
 
@@ -64,7 +57,8 @@ for _ in range(n):
     x = int(value)
 
     if command == "+":
-        root = insert(root, (x + last_answer) % 10**9)
+        key = (x + last_answer) % 10**9
+        root = insert(root, key)
         last_answer = 0
     else:
         last_answer = find_next(root, x)
