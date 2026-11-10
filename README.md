@@ -7,3 +7,4 @@
 - [Контейнеры](containers/)
 - [Куча](heap/)
 - [Курсовая работа](course_work/)
+- [Бинарные деревья поиска](binary_search_tree/)
