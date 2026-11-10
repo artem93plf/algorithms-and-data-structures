@@ -9,7 +9,6 @@ class Node:
 
 
 def insert(root, key):
-    """Добавляет key в обычное BST; повторяющиеся ключи игнорируются."""
     if root is None:
         return Node(key)
 
@@ -32,7 +31,6 @@ def insert(root, key):
 
 
 def find_next(root, key):
-    """Возвращает наименьший ключ >= key или -1, если такого нет."""
     answer = -1
     node = root
 
