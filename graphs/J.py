@@ -1,15 +1,19 @@
 n, m = map(int, input().split())
 
 edges = []
-
 for _ in range(m):
     a, b = map(int, input().split())
     edges.append((a, b))
 
 order = list(map(int, input().split()))
 
+pos = [0] * (n + 1)
+
+for i in range(n):
+    pos[order[i]] = i
+
 for a, b in edges:
-    if order.index(a) > order.index(b):
+    if pos[a] > pos[b]:
         print("NO")
         break
 else:
