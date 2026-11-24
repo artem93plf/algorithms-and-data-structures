@@ -10,7 +10,7 @@ order = list(map(int, input().split()))
 pos = [0] * (n + 1)
 
 for i in range(n):
-    pos[order[i]] = i
+    pos[order[i]] = i # индекс - номер вершины знач - место на кот она стоит в ордер
 
 for a, b in edges:
     if pos[a] > pos[b]:
